@@ -58,3 +58,32 @@ export function decodedResistorValue(colorsArr: ColorsArr) {
   const resistanceValue =  baseValue * Math.pow(10, multiplier);
   return formatOhms(resistanceValue);
 }
+
+
+// 4
+export function isLeap(year: number): boolean {
+  return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0); 
+}
+
+
+// 5
+const pairDNARNA = {
+  "G": "C",
+  "C": "G",
+  "T": "A",
+  "A": "U"
+} as const;
+
+type Sequence = keyof typeof pairDNARNA;
+type SequenceResult = typeof pairDNARNA[Sequence];
+type SequenceResultString = `${SequenceResult}`;
+
+export function toRna(sequence: Sequence): SequenceResultString {
+  const resultSequence = sequence.split("").map(letter => pairDNARNA[letter as Sequence]).join("") as SequenceResultString;
+  
+ if (resultSequence.length !== sequence.length) {
+    throw new Error("Invalid input DNA.");  // If some letters were invalid, return an error message
+  }
+
+  return resultSequence;
+}
