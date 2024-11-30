@@ -106,3 +106,35 @@ type planet = keyof typeof planets;
 export function age(planet: planet, seconds: number): number {
   return Math.round(seconds * 100 / (planets[planet] * 31557600)) / 100;
 }
+
+// 7 
+
+export class DnDCharacter { 
+  strength: number;
+  dexterity: number;
+  constitution: number;
+  intelligence: number;
+  wisdom: number;
+  charisma: number;
+  hitpoints: number;
+
+  constructor() {
+    this.strength = DnDCharacter.generateAbilityScore();
+    this.dexterity = DnDCharacter.generateAbilityScore();
+    this.constitution = DnDCharacter.generateAbilityScore();
+    this.intelligence = DnDCharacter.generateAbilityScore();
+    this.wisdom = DnDCharacter.generateAbilityScore();
+    this.charisma = DnDCharacter.generateAbilityScore();
+    this.hitpoints = 10 + DnDCharacter.getModifierFor(this.constitution);
+  }
+
+  public static generateAbilityScore(): number {
+    const abilityScore = Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6) + Math.ceil(Math.random() * 6)
+    return abilityScore
+  }
+
+  public static getModifierFor(abilityValue: number): number {
+    return Math.floor((abilityValue - 10) / 2)
+  }
+}
+
