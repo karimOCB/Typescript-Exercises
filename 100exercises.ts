@@ -89,7 +89,6 @@ export function toRna(sequence: Sequence): SequenceResultString {
 }
 
 // 6
-
 const planets = {
   mercury: 0.2408467,
   venus: 0.61519726,
@@ -108,7 +107,6 @@ export function age(planet: planet, seconds: number): number {
 }
 
 // 7 
-
 export class DnDCharacter { 
   strength: number;
   dexterity: number;
@@ -137,4 +135,21 @@ export class DnDCharacter {
     return Math.floor((abilityValue - 10) / 2)
   }
 }
+
+// 8
+export function score(x: number, y: number): number {
+ const distance = Math.sqrt(x * x + y * y);
+  
+  // Determine score based on distance
+  if (distance > 10) {
+    return 0; // Outside the target
+  } else if (distance > 5) {
+    return 1; // Outer circle
+  } else if (distance > 1) {
+    return 5; // Middle circle
+  } else {
+    return 10; // Inner circle
+  }
+}
+
 
