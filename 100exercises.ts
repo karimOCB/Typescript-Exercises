@@ -152,4 +152,38 @@ export function score(x: number, y: number): number {
   }
 }
 
+// 9 
+export function isPangram(string: string): boolean {
+    const lowerCaseString = string.toLowerCase();
+    return [..."abcdefghijklmnopqrstuvwxyz"].every(letter => lowerCaseString.includes(letter))
+}
 
+// 10 
+export function hey(message: string): string {
+  const trimmedString = message.trim();
+  const question = trimmedString.endsWith("?");
+  const upperCase = message.toUpperCase() === message;
+  const hasNumber = [...message].some(letter => Number(letter))
+  const onlyNumberArr = message.split(', ').every(letter => Number(letter));
+
+  if (question && upperCase && !hasNumber) {
+    return "Calm down, I know what I'm doing!"
+  } else if(question) {
+    return "Sure."
+  } else if(upperCase && trimmedString !== "" && !onlyNumberArr) {
+    return "Whoa, chill out!"
+  } else if(trimmedString === "") {
+    return "Fine. Be that way!"
+  } 
+  return "Whatever."
+}
+
+// 10 Better Solution
+const answers: string[] = ["Whatever.", "Sure.", "Whoa, chill out!", "Calm down, I know what I'm doing!"]
+export const hey = (message: string): string => {
+    const speech = message.trim()
+    if (speech == "") return "Fine. Be that way!"
+    const isQuestion = speech.endsWith("?") ? 1 : 0
+    const isYelling = /[A-Z]+/.test(speech) && speech == speech.toUpperCase() ? 2 : 0
+    return answers[isQuestion + isYelling]
+}
