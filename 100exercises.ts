@@ -187,3 +187,21 @@ export const hey = (message: string): string => {
     const isYelling = /[A-Z]+/.test(speech) && speech == speech.toUpperCase() ? 2 : 0
     return answers[isQuestion + isYelling]
 }
+
+// 11 
+export class Matrix {
+  matrix: string[];
+  constructor(string: string) {
+    this.matrix = string.split("\n");
+  }
+
+  get rows(): number[][] {
+    return this.matrix.map(row => row.split(" ").map(string => Number(string)));
+  }
+
+  get columns(): number[][] {
+    const rows = this.rows;
+    return rows[0].map((_, colIndex) => rows.map(row => row[colIndex]));
+  }
+}
+
